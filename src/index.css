@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@keyframes character-breath {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+.animate-breath {
+  animation: character-breath 3.5s ease-in-out infinite;
+}
+
+/* Hero walking/waddling animation: upper body tilts left and right while walking */
+@keyframes hero-walk-waddle {
+  0% {
+    transform: rotate(-7deg) translateY(-2px) scale(1);
+  }
+  25% {
+    transform: rotate(0deg) translateY(1px) scale(1.02);
+  }
+  50% {
+    transform: rotate(7deg) translateY(-2px) scale(1);
+  }
+  75% {
+    transform: rotate(0deg) translateY(1px) scale(1.02);
+  }
+  100% {
+    transform: rotate(-7deg) translateY(-2px) scale(1);
+  }
+}
+
+.animate-waddle {
+  transform-origin: top center;
+  animation: hero-walk-waddle 1.1s ease-in-out infinite;
+}
+
+/* Room passage entry feeling animation */
+@keyframes room-pass-through {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.6) translateY(10px);
+    filter: brightness(1.8) blur(2px);
+  }
+  60% {
+    opacity: 0.9;
+    transform: scale(1.08) translateY(-2px);
+    filter: brightness(1.2) blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+    filter: brightness(1) blur(0px);
+  }
+}
+
+.animate-room-passage {
+  animation: room-pass-through 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Spike trap thrusting up animation */
+@keyframes spike-thrust-up {
+  0% {
+    transform: translateY(100%) scaleY(0);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(0%) scaleY(1.2);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-5%) scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%) scaleY(1);
+    opacity: 0.95;
+  }
+}
+
+.animate-spike-thrust {
+  transform-origin: bottom center;
+  animation: spike-thrust-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Poison gas billowing/rising animation */
+@keyframes gas-billow-rise {
+  0% {
+    opacity: 0.2;
+    transform: translateY(15px) scale(0.8);
+    filter: blur(2px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-8px) scale(1.15);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateY(-20px) scale(1.3);
+    filter: blur(6px);
+  }
+}
+
+.animate-gas-rise {
+  animation: gas-billow-rise 1.1s ease-in-out infinite alternate;
+}
+
+/* 2x Blink animation when minion HP drops to 0 or dies */
+@keyframes blink-twice {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  20%, 60% { opacity: 0; filter: brightness(2) hue-rotate(90deg); }
+  40%, 80% { opacity: 1; filter: brightness(1.5); }
+}
+
+.animate-blink-twice {
+  animation: blink-twice 0.8s ease-in-out 2 forwards;
+}
+
+/* 4-directional (N/S/E/W - 동서남북) detailed room movement animation */
+@keyframes hero-walk-4dir {
+  0% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+  20% {
+    transform: translate(0px, -14px) scale(1.08) rotate(-4deg); /* ⬆️ 북쪽 (North) */
+  }
+  40% {
+    transform: translate(16px, -2px) scale(1.08) rotate(6deg);  /* ➡️ 동쪽 (East) */
+  }
+  60% {
+    transform: translate(0px, 14px) scale(1.08) rotate(3deg);  /* ⬇️ 남쪽 (South) */
+  }
+  80% {
+    transform: translate(-16px, -2px) scale(1.08) rotate(-6deg); /* ⬅️ 서쪽 (West) */
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+}
+
+.animate-move-4dir {
+  transform-origin: center center;
+  animation: hero-walk-4dir 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Compass indicator pulse for 4-dir movement */
+@keyframes compass-dir-spin {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-compass-dir {
+  animation: compass-dir-spin 2.4s ease-in-out infinite;
+}
+
+/* Combat 1v1 Direct Physical Strike Action (Hero strikes Right, Minion strikes Left) */
+@keyframes strike-hero-forward {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px) scale(1) rotate(0deg);
+  }
+  20% {
+    transform: translateX(28px) translateY(-6px) scale(1.22) rotate(16deg); /* Hero lurches right to strike */
+    filter: brightness(1.4) drop-shadow(0 0 12px rgba(239, 68, 68, 0.8));
+  }
+  35% {
+    transform: translateX(-6px) translateY(2px) scale(0.95) rotate(-4deg); /* Recoil back */
+  }
+  70% {
+    transform: translateX(32px) translateY(4px) scale(1.25) rotate(18deg); /* Second strike! */
+    filter: brightness(1.5) drop-shadow(0 0 14px rgba(245, 158, 11, 0.9));
+  }
+  85% {
+    transform: translateX(-4px) translateY(0px) scale(0.98);
+  }
+}
+
+@keyframes strike-defender-forward {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px) scale(1) rotate(0deg);
+  }
+  20% {
+    transform: translateX(-6px) translateY(2px) scale(0.95) rotate(4deg); /* Recoil back */
+  }
+  45% {
+    transform: translateX(-28px) translateY(-6px) scale(1.22) rotate(-16deg); /* Defender counter-strikes left */
+    filter: brightness(1.4) drop-shadow(0 0 12px rgba(168, 85, 247, 0.8));
+  }
+  60% {
+    transform: translateX(4px) translateY(2px) scale(0.96) rotate(3deg);
+  }
+  85% {
+    transform: translateX(-32px) translateY(4px) scale(1.25) rotate(-18deg); /* Second counter-strike! */
+    filter: brightness(1.5) drop-shadow(0 0 14px rgba(239, 68, 68, 0.9));
+  }
+}
+
+.animate-direct-strike-hero {
+  transform-origin: center center;
+  animation: strike-hero-forward 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+}
+
+.animate-direct-strike-defender {
+  transform-origin: center center;
+  animation: strike-defender-forward 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+}
+
+/* Impact slash flash effect */
+@keyframes impact-slash-burst {
+  0% { transform: scale(0.3) rotate(-45deg); opacity: 0; }
+  30% { transform: scale(1.4) rotate(0deg); opacity: 1; filter: brightness(2); }
+  60% { transform: scale(1.1) rotate(20deg); opacity: 0.9; }
+  100% { transform: scale(0.5) rotate(45deg); opacity: 0; }
+}
+
+.animate-impact-slash {
+  animation: impact-slash-burst 0.9s ease-out infinite;
+}
+
+/* Retreating/escaping animation when minion or hero retreats */
+@keyframes retreat-escape-left {
+  0% {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-40px) scale(0.5) rotate(-25deg);
+    opacity: 0.3;
+  }
+}
+
+.animate-retreat-escape {
+  animation: retreat-escape-left 0.8s ease-out forwards;
+}
+
+
+
+
+

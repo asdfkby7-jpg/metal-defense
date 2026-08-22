@@ -1,0 +1,6 @@
+{
+  "name": "네버엔딩 메탈 디펜스",
+  "description": "둥지짓는 드래곤 스타일의 흡혈귀 성 던전 설계 및 경영 시뮬레이션 게임",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
